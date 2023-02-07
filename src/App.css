@@ -1,0 +1,12 @@
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 80vw;
+  max-width: 512px;
+}
