@@ -7,7 +7,6 @@ const Product = require('../models/productModel')
 //  @access Public
 const getAllProducts = asyncHandler(async (req, res) => {
   const products = await Product.find() 
-
   res.status(200).json(products)
 })
 
@@ -33,7 +32,13 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new Error('Please add a name field')
   }
   const product = await Product.create({
-    name: req.body.name
+    name: req.body.name,
+    description: req.body.description,
+    size: req.body.size,
+    type: req.body.type,
+    price: req.body.price,
+    sku: req.body.sku,
+    barcode: req.body.barcode,
   })
   res.status(200).json(product)
 })
@@ -59,18 +64,13 @@ const updateProduct = asyncHandler(async (req, res) => {
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id)
   console.log(product)
-
   if(!product) {
     res.status(400)
     throw new Error('Product not found')
   }
-
   await product.deleteOne()
-
   res.status(200).json({ id: req.params.id })
 })
-
-
 
 module.exports = {
   getProduct,
