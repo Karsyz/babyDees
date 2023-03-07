@@ -167,5 +167,5 @@ module.exports = {
 
 
 
-
+// Return list of unique characters
 const uniqueInOrder = d => [...d].filter((x, i, a) => x != a[i + 1])

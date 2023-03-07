@@ -19,9 +19,11 @@ const productSchema = mongoose.Schema({
   },
   sku: {
     type: String,
+    unique: [true, 'Existing sku exists in database already']
   },
   barcode: {
     type: Number,
+    unique: [true, 'Existing barcode exists in database already']
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
