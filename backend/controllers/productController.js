@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
 const Product = require('../models/productModel')
+const User = require('../models/userModel')
 
 //  @desc   Get all products
 //  @route  GET /api/products
@@ -27,18 +28,31 @@ const getProduct = asyncHandler(async (req, res) => {
 //  @route  POST /api/products
 //  @access Private
 const createProduct = asyncHandler(async (req, res) => {
-  if(!req.body.name) {
+  const { name, description, size, type, price, sku, barcode } = req.body
+  
+  // verify all fields present
+  if(!name || !description || !size || !type || !price || !sku || !barcode ) {
     res.status(400)
-    throw new Error('Please add a name field')
+    throw new Error('Please add all fields')
   }
+  
+  // Get current user
+  const user = await User.findById(req.user.id)
+  if(!user) {
+    res.status(401)
+    throw new Error('User not found')
+  }
+
+  // Create new product 
   const product = await Product.create({
-    name: req.body.name,
-    description: req.body.description,
-    size: req.body.size,
-    type: req.body.type,
-    price: req.body.price,
-    sku: req.body.sku,
-    barcode: req.body.barcode,
+    name: name,
+    description: description,
+    size: size,
+    type: type,
+    price: price,
+    sku: sku,
+    barcode: barcode,
+    createdBy: user.id
   })
   res.status(200).json(product)
 })
