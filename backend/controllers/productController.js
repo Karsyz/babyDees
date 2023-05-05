@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler')
 const Product = require('../models/productModel')
 const User = require('../models/userModel')
 
+
 //  @desc   Get all products
 //  @route  GET /api/products
 //  @access Public
@@ -24,6 +25,18 @@ const getProduct = asyncHandler(async (req, res) => {
 })
 
 
+//  @desc   Get all products in category
+//  @route  GET /api/products/category
+//  @access Public
+const getAllProductsInCategory = asyncHandler(async (req, res) => {
+  const product = await Product.find( { category: req.params.category } )
+  if(!product) {
+    res.status(400)
+    throw new Error('No products in category')
+  }
+  res.status(200).json(product)
+})
+
 //  @desc   Create a product
 //  @route  POST /api/products
 //  @access Private
@@ -44,7 +57,7 @@ const createProduct = asyncHandler(async (req, res) => {
   }
 
   // Set productNumber for category  ex: {category}{productNumber}: quilts0231
-  // get highest productNumber in category
+  // get highest productNumber in category and add one if category exists else 1
   let productNumber
   const categoryExists = await Product.findOne( { category: category } )
   if ( categoryExists ) {
@@ -109,7 +122,9 @@ const deleteProduct = asyncHandler(async (req, res) => {
 module.exports = {
   getProduct,
   getAllProducts,
+  getAllProductsInCategory,
   createProduct,
   updateProduct,
   deleteProduct,
+
 }
