@@ -1,8 +1,10 @@
+import { NavLink, Link } from 'react-router-dom'
+
 const categories = [
   {
     id: 1,
     name: 'Quilts',
-    href: '#',
+    href: '/products/quilts',
     imageSrc: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81YTpYV35HL.jpg',
     imageAlt: "Quilts Collection",
     description: 'The rest of the house will still be a mess, but your desk will look great.',
@@ -42,43 +44,46 @@ const categories = [
 ]
 
 
-export default function Categories() {
+export default function ProductIndex() {
   return (
-    <>
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 ">
-        
-        {/* This area to be used for products navigation tree */}
-        {/* <h2 className="text-gray-900 font-semibold">Products</h2> */}
+    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 ">
+      <h2 className="relative text-gray-900 text-2xl font-semibold my-4
+        ">Product Categories</h2>
+      <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 overflow-hidden">
 
-        <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 overflow-hidden">
-
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className="relative flex flex-col rounded-lg overflow-hidden"
-            >
-              <div className="aspect-h-4 aspect-w-3 sm:aspect-none sm:h-96">
-                <img
-                  src={category.imageSrc}
-                  alt={category.imageAlt}
-                  className="h-full w-full object-cover object-center sm:h-full sm:w-full"
-                />
-              </div>
-              <div className="flex flex-1 flex-col space-y-2 p-4 bg-white">
-                <h3 className="text-sm font-medium text-gray-900">
-                  <a href={category.href}>
-                    <span aria-hidden="true" className="absolute inset-0" />
-                    {category.name}
-                  </a>
-                </h3>
-                <p className="text-sm text-gray-500">{category.description}</p>
-                <div className="flex flex-1 flex-col justify-end">
-                </div>
+        {categories.map((category) => (
+          <div
+            key={category.id}
+            className="relative flex flex-col rounded-lg overflow-hidden"
+          >
+            <div className="aspect-h-4 aspect-w-3 sm:aspect-none sm:h-96">
+              <img
+                src={category.imageSrc}
+                alt={category.imageAlt}
+                className="h-full w-full object-cover object-center sm:h-full sm:w-full"
+              />
+            </div>
+            <div className="flex flex-1 flex-col space-y-2 p-4 bg-white">
+              <h3 className="text-sm font-medium text-gray-900">
+                <NavLink to={category.href}>
+                  <span aria-hidden="true" className="absolute inset-0" />
+                  {category.name}
+                </NavLink>
+              </h3>
+              <p className="text-sm text-gray-500">{category.description}</p>
+              <div className="flex flex-1 flex-col justify-end">
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </>
-  )
+
+    </div>
+  );
 }
+
+
+
+
+
+

@@ -28,10 +28,10 @@ const getProduct = asyncHandler(async (req, res) => {
 //  @route  POST /api/products
 //  @access Private
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, description, size, type, price, sku, barcode } = req.body
+  const { category, name, price, description, rating, reviewCount, reviews, colors, sizes, type, details, options, images, sku, barcode } = req.body
   
-  // verify all fields present
-  if(!name || !description || !size || !type || !price || !sku || !barcode ) {
+  // verify minimum of fields present
+  if(!category || !name || !price || !description ) {
     res.status(400)
     throw new Error('Please add all fields')
   }
@@ -43,13 +43,33 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 
+  // Set productNumber for category  ex: {category}{productNumber}: quilts0231
+  // get highest productNumber in category
+  let productNumber
+  const categoryExists = await Product.findOne( { category: category } )
+  if ( categoryExists ) {
+    let maxCatProdNum = await Product.find( { category: category } ).sort( { productNumber: -1} ).limit(1)
+    productNumber = maxCatProdNum[0].productNumber + 1
+  }else {
+    productNumber = 1
+  }
+
   // Create new product 
   const product = await Product.create({
+    category: category,
+    productNumber: productNumber,
     name: name,
-    description: description,
-    size: size,
-    type: type,
     price: price,
+    description: description,
+    rating: rating,
+    reviewCount: reviewCount,
+    reviews: reviews,
+    colors: colors,
+    sizes: sizes,
+    type: type,
+    details: details,
+    options: options,
+    images: images,
     sku: sku,
     barcode: barcode,
     createdBy: user.id

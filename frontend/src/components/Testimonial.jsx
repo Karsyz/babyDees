@@ -89,7 +89,7 @@ export default function Testimonial() {
     <section className="flex flex-row justify-center mb-16 mt-16">
       <div className="lg:max-w-7xl">
         {/* {reviews.map((rev) => ( */}
-          <div className="flex flex-col lg:flex-row justify-center h-full bg-white border-gray-200 mx-10 rounded-3xl lg:p-16 gap-0 lg:gap-10 md:p-10" key={revCount}>
+          <div className="flex flex-col lg:flex-row justify-center h-full bg-babyDeesBG-turq border-gray-200 mx-10 rounded-3xl lg:p-16 gap-0 lg:gap-10 md:p-10" key={revCount}>
             <div className="shrink-0 self-center p-6">
               <img src={revProd.productImageSrc} alt="blank" className="w-80 h-80 rounded-3xl lg:w-100 sm:m-6 animate-reviewFade" />
             </div>

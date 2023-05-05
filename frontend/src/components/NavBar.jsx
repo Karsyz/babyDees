@@ -105,7 +105,7 @@ const navigation = {
 
   ],
   pages: [
-    { name: 'Products', href: '/products' },
+    { name: 'Products', href: '/products/categories' },
     { name: 'About Us', href: '/aboutUs' },
     { name: 'Contact', href: '/#contact', },
   ],

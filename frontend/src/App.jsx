@@ -7,7 +7,6 @@ import {
 
 // Pages
 import LandingPage from './pages/LandingPage'
-import Products from './pages/products'
 import AboutUs from './pages/AboutUs'
 import Checkout from './pages/checkout'
 import CreateAccount from './pages/createAccount'
@@ -18,11 +17,18 @@ import PaymentSuccess from './pages/paymentSuccess'
 import PaymentFailure from './pages/paymentFailure'
 import NotFound from './pages/NotFound'
 
+
+import ProductCategory from './pages/ProductCategory'
+import ProductIndex from './pages/ProductIndex'
+import ProductDetail from './pages/ProductDetail'
+
+
 // Layouts
 import RootLayout from './Layouts/RootLayout'
+import ProductLayout from './Layouts/ProductLayout'
 
 //Components
-import ProductList from './components/ProductList'
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,11 +42,17 @@ const router = createBrowserRouter(
       <Route path='paymentReview' element={<PaymentReview />} />
       <Route path='paymentSuccess' element={<PaymentSuccess />} />
       <Route path='paymentFailure' element={<PaymentFailure />} />
-      <Route path='products' element={<Products />} >
-        <Route path='Quilts' element={<ProductList />} >
-          <Route path='QuiltName' element={<ProductList />} />
+
+      <Route path='products' element={<ProductLayout />} >
+
+        <Route path='categories' element={<ProductIndex />} />
+          <Route path='quilts' element={<ProductCategory />} >
         </Route>
+        <Route path='productDetail' element={<ProductDetail />} />
+
       </Route>
+
+
       <Route path='*' element={<NotFound />} />
     </Route>
   )
@@ -48,7 +60,6 @@ const router = createBrowserRouter(
 
 
 export default function App() {
-
   return (
     <RouterProvider router={router} />
   )
