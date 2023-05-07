@@ -1,59 +1,24 @@
-import { NavLink, Link, Outlet } from 'react-router-dom'
+import { Link, useLoaderData } from 'react-router-dom'
 
-const categories = [
-  {
-    id: 1,
-    name: 'Quilts',
-    href: 'quilts',
-    imageSrc: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81YTpYV35HL.jpg',
-    imageAlt: "Quilts Collection",
-    description: 'The rest of the house will still be a mess, but your desk will look great.',
-  },
-  {
-    id: 2,
-    name: 'Slippers',
-    href: 'slippers',
-    imageSrc: 'https://cdn.shopify.com/s/files/1/0373/0925/products/website_product_baby_vs2-009.jpg?v=1624912403',
-    imageAlt: "Slippers Category",
-    description: 'The rest of the house will still be a mess, but your desk will look great.',
-  },
-  {
-    id: 3,
-    name: 'Wash Cloths',
-    href: 'washCloths',
-    imageSrc: 'https://www.crochet365knittoo.com/wp-content/uploads/2021/06/crochet-washcloth-pattern-folded.jpg',
-    imageAlt: "Quilts Collection",
-    description: 'The rest of the house will still be a mess, but your desk will look great.',
-  },
-  {
-    id: 4,
-    name: 'Baby Gift Kits',
-    href: '#',
-    imageSrc: 'https://cdn.shopify.com/s/files/1/0976/2276/products/1A3A6853_1445x.jpg?v=1584909011',
-    imageAlt: "Quilts Collection",
-    description: 'The rest of the house will still be a mess, but your desk will look great.',
-  },
-  {
-    id: 5,
-    name: 'Bags',
-    href: '#',
-    imageSrc: 'https://i.etsystatic.com/12903630/r/il/bfba2a/2517062385/il_fullxfull.2517062385_4otm.jpg',
-    imageAlt: "Quilts Collection",
-    description: 'The rest of the house will still be a mess, but your desk will look great.',
-  },
-]
-
+export const productIndexLoader = async () => {
+  const res = await fetch('http://localhost:5000/api/products/categories')
+  const json = res.json()
+  console.log(json)
+  return json
+}
 
 export default function ProductIndex() {
+  const categories = useLoaderData()
+
   return (
     <div className="mx-auto max-w-2xl px-4 pb-8 sm:px-6 lg:max-w-7xl lg:px-8 ">
       <h2 className="relative text-gray-900 text-2xl font-semibold my-4
         ">Product Categories</h2>
       <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 overflow-hidden">
 
-        {categories.map((category) => (
+        {categories.map((category, key) => (
           <div
-            key={category.id}
+            key={key}
             className="relative flex flex-col rounded-lg overflow-hidden"
           >
             <div className="aspect-h-4 aspect-w-3 sm:aspect-none sm:h-96">
@@ -65,7 +30,7 @@ export default function ProductIndex() {
             </div>
             <div className="flex flex-1 flex-col space-y-2 p-4 bg-white">
               <h3 className="text-sm font-medium text-gray-900">
-                <Link to={category.href}>
+                <Link to={category.categoryCamelCase}>
                   <span aria-hidden="true" className="absolute inset-0" />
                   {category.name}
                 </Link>
@@ -77,14 +42,51 @@ export default function ProductIndex() {
           </div>
         ))}
       </div>
-      {/* <Outlet /> */}
     </div>
     
   );
 }
 
 
-
-
-
-
+// const categories = [
+//   {
+//     id: 1,
+//     name: 'Quilts',
+//     href: 'quilts',
+//     imageSrc: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81YTpYV35HL.jpg',
+//     imageAlt: "Quilts Collection",
+//     description: 'The rest of the house will still be a mess, but your desk will look great.',
+//   },
+//   {
+//     id: 2,
+//     name: 'Slippers',
+//     href: 'slippers',
+//     imageSrc: 'https://cdn.shopify.com/s/files/1/0373/0925/products/website_product_baby_vs2-009.jpg?v=1624912403',
+//     imageAlt: "Slippers Category",
+//     description: 'The rest of the house will still be a mess, but your desk will look great.',
+//   },
+//   {
+//     id: 3,
+//     name: 'Wash Cloths',
+//     href: 'washCloths',
+//     imageSrc: 'https://www.crochet365knittoo.com/wp-content/uploads/2021/06/crochet-washcloth-pattern-folded.jpg',
+//     imageAlt: "Quilts Collection",
+//     description: 'The rest of the house will still be a mess, but your desk will look great.',
+//   },
+//   {
+//     id: 4,
+//     name: 'Baby Gift Kits',
+//     href: '#',
+//     imageSrc: 'https://cdn.shopify.com/s/files/1/0976/2276/products/1A3A6853_1445x.jpg?v=1584909011',
+//     imageAlt: "Quilts Collection",
+//     description: 'The rest of the house will still be a mess, but your desk will look great.',
+//   },
+//   {
+//     id: 5,
+//     name: 'Bags',
+//     href: '#',
+//     imageSrc: 'https://i.etsystatic.com/12903630/r/il/bfba2a/2517062385/il_fullxfull.2517062385_4otm.jpg',
+//     imageAlt: "Quilts Collection",
+//     description: 'The rest of the house will still be a mess, but your desk will look great.',
+//   },
+// ]

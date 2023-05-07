@@ -19,8 +19,9 @@ import NotFound from './pages/NotFound'
 
 
 import ProductCategory from './pages/ProductCategory'
-import ProductIndex from './pages/ProductIndex'
 import ProductDetail from './pages/ProductDetail'
+
+import ProductIndex, { productIndexLoader } from './pages/ProductIndex'
 
 
 // Layouts
@@ -46,7 +47,11 @@ const router = createBrowserRouter(
 
 
         <Route path='products' element={<ProductLayout />} >
-          <Route path='categories' element={<ProductIndex />} />
+          <Route 
+            path='categories' 
+            element={<ProductIndex />} 
+            loader={productIndexLoader} 
+            />
           <Route path='categories/:category' element={<ProductCategory />} />
           <Route path='categories/:category/:prodNum' element={<ProductDetail />} />
         </Route>

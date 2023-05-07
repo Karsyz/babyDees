@@ -7,7 +7,7 @@ const Categories = require('../models/productCategoriesModel')
 //  @route  GET /api/products/categories
 //  @access Public
 const getAllProductCategories = asyncHandler(async (req, res) => {
-  const categories = await Categories.find() 
+  const categories = await Categories.find()
   res.status(200).json(categories)
 })
 
@@ -16,17 +16,35 @@ const getAllProductCategories = asyncHandler(async (req, res) => {
 //  @route  POST /api/products/categories
 //  @access Private
 const createCategory = asyncHandler(async (req, res) => {
-  const { category } = req.body
-  
+  const { categoryStdCase, imageSrc, imageAlt, description } = req.body
+  console.log(imageSrc)
   // verify minimum of fields present
-  if(!category ) {
+  if(!categoryStdCase) {
     res.status(400)
     throw new Error('Please add all fields')
   }
-  
+
+  // convert Standard Case to camelCase
+  const toCamelCase = (words) => {
+    const wordsArr = words.toLowerCase().split(' ')
+    for (i = 0; i < wordsArr.length; i++) {
+      if (i !== 0) {
+        const firstLetter = wordsArr[i].slice(0, 1).toUpperCase()
+        const lastLetters = wordsArr[i].slice(1).toLowerCase()
+        wordsArr.splice(i, 1, firstLetter + lastLetters)
+      }
+    }
+    return wordsArr.join('')
+  }
+
+
   // Create new product category
   const categories = await Categories.create({
-    category: category,
+    categoryStdCase: categoryStdCase,
+    categoryCamelCase: toCamelCase(categoryStdCase),
+    imageSrc: imageSrc,
+    imageAlt: imageAlt,
+    description: description
   })
   res.status(200).json(categories)
 })
