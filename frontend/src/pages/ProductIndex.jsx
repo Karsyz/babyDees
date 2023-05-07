@@ -1,10 +1,10 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, Outlet } from 'react-router-dom'
 
 const categories = [
   {
     id: 1,
     name: 'Quilts',
-    href: '/products/quilts',
+    href: 'quilts',
     imageSrc: 'https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81YTpYV35HL.jpg',
     imageAlt: "Quilts Collection",
     description: 'The rest of the house will still be a mess, but your desk will look great.',
@@ -12,7 +12,7 @@ const categories = [
   {
     id: 2,
     name: 'Slippers',
-    href: '#',
+    href: 'slippers',
     imageSrc: 'https://cdn.shopify.com/s/files/1/0373/0925/products/website_product_baby_vs2-009.jpg?v=1624912403',
     imageAlt: "Slippers Category",
     description: 'The rest of the house will still be a mess, but your desk will look great.',
@@ -20,7 +20,7 @@ const categories = [
   {
     id: 3,
     name: 'Wash Cloths',
-    href: '#',
+    href: 'washCloths',
     imageSrc: 'https://www.crochet365knittoo.com/wp-content/uploads/2021/06/crochet-washcloth-pattern-folded.jpg',
     imageAlt: "Quilts Collection",
     description: 'The rest of the house will still be a mess, but your desk will look great.',
@@ -46,7 +46,7 @@ const categories = [
 
 export default function ProductIndex() {
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 ">
+    <div className="mx-auto max-w-2xl px-4 pb-8 sm:px-6 lg:max-w-7xl lg:px-8 ">
       <h2 className="relative text-gray-900 text-2xl font-semibold my-4
         ">Product Categories</h2>
       <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 overflow-hidden">
@@ -65,10 +65,10 @@ export default function ProductIndex() {
             </div>
             <div className="flex flex-1 flex-col space-y-2 p-4 bg-white">
               <h3 className="text-sm font-medium text-gray-900">
-                <NavLink to={category.href}>
+                <Link to={category.href}>
                   <span aria-hidden="true" className="absolute inset-0" />
                   {category.name}
-                </NavLink>
+                </Link>
               </h3>
               <p className="text-sm text-gray-500">{category.description}</p>
               <div className="flex flex-1 flex-col justify-end">
@@ -77,8 +77,9 @@ export default function ProductIndex() {
           </div>
         ))}
       </div>
-
+      {/* <Outlet /> */}
     </div>
+    
   );
 }
 

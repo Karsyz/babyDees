@@ -32,29 +32,28 @@ import ProductLayout from './Layouts/ProductLayout'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<RootLayout />}>
-      <Route index element={<LandingPage />} />
-      <Route path='account' element={<Account />} />
-      <Route path='signIn' element={<SignIn />} />
-      <Route path='aboutUs' element={<AboutUs />} />
-      <Route path='checkout' element={<Checkout />} />
-      <Route path='createAccount' element={<CreateAccount />} />
-      <Route path='paymentReview' element={<PaymentReview />} />
-      <Route path='paymentSuccess' element={<PaymentSuccess />} />
-      <Route path='paymentFailure' element={<PaymentFailure />} />
+    <>
+      <Route path='/' element={<RootLayout />}>
+        <Route index element={<LandingPage />} />
+        <Route path='aboutUs' element={<AboutUs />} />
+        <Route path='signIn' element={<SignIn />} />
+        <Route path='account' element={<Account />} />
+        <Route path='checkout' element={<Checkout />} />
+        <Route path='createAccount' element={<CreateAccount />} />
+        <Route path='paymentReview' element={<PaymentReview />} />
+        <Route path='paymentSuccess' element={<PaymentSuccess />} />
+        <Route path='paymentFailure' element={<PaymentFailure />} />
 
-      <Route path='products' element={<ProductLayout />} >
 
-        <Route path='categories' element={<ProductIndex />} />
-          <Route path='quilts' element={<ProductCategory />} >
+        <Route path='products' element={<ProductLayout />} >
+          <Route path='categories' element={<ProductIndex />} />
+          <Route path='categories/:category' element={<ProductCategory />} />
+          <Route path='categories/:category/:prodNum' element={<ProductDetail />} />
         </Route>
-        <Route path='productDetail' element={<ProductDetail />} />
 
+        <Route path='*' element={<NotFound />} />
       </Route>
-
-
-      <Route path='*' element={<NotFound />} />
-    </Route>
+    </>
   )
 )
 

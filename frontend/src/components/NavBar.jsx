@@ -8,104 +8,10 @@ import MobileMenu from '../components/MobileMenu'
 
 const navigation = {
   categories: [
-    // {
-    //   id: 'quilts',
-    //   name: 'Quilts',
-    //   featured: [
-    //     {
-    //       name: 'Quilts',
-    //       href: '#',
-    //       imageSrc: 'https://i.etsystatic.com/21151318/r/il/040cf0/2491100227/il_570xN.2491100227_avjz.jpg',
-    //       imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-    //     },
-
-    //     {
-    //       name: 'Baby Quilts',
-    //       href: '#',
-    //       imageSrc: 'https://i.etsystatic.com/16739514/r/il/a71b67/1387983338/il_794xN.1387983338_5w20.jpg',
-    //       imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-    //     },
-    //   ],
-    //   sections: [
-    //     {
-    //       id: 'ragQuilts',
-    //       name: 'Rag Quilts',
-    //       items: [
-    //         { name: 'Queen', href: '#' },
-    //         { name: 'Twin', href: '#' },
-    //         { name: 'Baby', href: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-
-    // {
-    //   id: 'babyShower',
-    //   name: 'Baby Shower',
-    //   featured: [
-    //     {
-    //       name: 'Kit #1',
-    //       href: '#',
-    //       imageSrc: 'https://i.etsystatic.com/12903630/r/il/bfba2a/2517062385/il_fullxfull.2517062385_4otm.jpg',
-    //       imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-    //     },
-
-    //     {
-    //       name: 'Kit #2',
-    //       href: '#',
-    //       imageSrc: 'https://the.bookstore.ubc.ca/eSolution_config/partimg/large/2804079/0001.jpg',
-    //       imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-    //     },
-    //   ],
-    //   sections: [
-    //     {
-    //       id: 'bags',
-    //       name: 'Bags',
-    //       items: [
-    //         { name: 'Music', href: '#' },
-    //         { name: 'Tote', href: '#' },
-    //         { name: 'Grocery', href: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-
-    // {
-    //   id: 'slippers',
-    //   name: 'Slippers',
-    //   featured: [
-    //     {
-    //       name: 'Slippers',
-    //       href: '#',
-    //       imageSrc: 'https://irepo.primecp.com/2017/11/353784/grandmas-simple-knit-slippers_Large500_ID-2509763.png?v=2509763',
-    //       imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-    //     },
-
-    //             {
-    //       name: 'Baby Slippers',
-    //       href: '#',
-    //       imageSrc: 'https://cdn.shopify.com/s/files/1/0373/0925/products/website_product_baby_vs2-009.jpg?v=1624912403',
-    //       imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-    //     },
-    //   ],
-    //   sections: [
-    //     {
-    //       id: 'slippers',
-    //       name: 'Slipppers',
-    //       items: [
-    //         { name: 'Knit', href: '#' },
-    //         { name: 'Crocheted', href: '#' },
-    //         { name: 'Adult', href: '#' },
-    //         { name: 'Child/Youth', href: '#' },
-    //         { name: 'Baby', href: '#' },
-    //       ],
-    //     },
-    //   ],
-    // },
-
   ],
+  
   pages: [
-    { name: 'Products', href: '/products/categories' },
+    { name: 'Products', href: '/products' },
     { name: 'About Us', href: '/aboutUs' },
     { name: 'Contact', href: '/#contact', },
   ],

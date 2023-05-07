@@ -1,8 +1,8 @@
 const products = [
   {
     id: 1,
-    name: 'Basic Tee 8-Pack',
-    href: ':productDetail',
+    name: 'Lovely Quilt 1',
+    href: 'quilt0001',
     price: '$256',
     description: 'Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.',
     options: '8 colors',
@@ -11,8 +11,8 @@ const products = [
   },
   {
     id: 2,
-    name: 'Basic Tee',
-    href: '#',
+    name: 'Lovely Quilt 2',
+    href: 'quilt0002',
     price: '$32',
     description: 'Look like a visionary CEO and wear the same black t-shirt every day.',
     options: 'Black',
@@ -44,13 +44,14 @@ const products = [
 import { Outlet, useLoaderData, useParams } from 'react-router-dom'
 
 export default function ProductCategory() {
-  const { id } = useParams()
+  const { category } = useParams()
   
   return (
     <div className='absolute top-6 w-full bg-transparent overflow-hidden'>
       <div className='flex flex-col justify-center'>
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 ">
-          <h2 className="text-gray-900 font-semibold">Products</h2>
+          {/* <h2 className="text-gray-900 font-semibold">Product</h2> */}
+          <h2 className="text-gray-900 font-semibold">{category}</h2>
           <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8 overflow-hidden">
             {products.map((product) => (
               <div
@@ -66,7 +67,7 @@ export default function ProductCategory() {
                 </div>
                 <div className="flex flex-1 flex-col space-y-2 p-4 bg-white">
                   <h3 className="text-sm font-medium text-gray-900">
-                    <a href={product.href}>
+                    <a href={`${category}/${product.href}`}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                     </a>

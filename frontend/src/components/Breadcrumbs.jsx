@@ -10,7 +10,7 @@ const page = [
 export default function Breadcrumbs() {
 
   return (
-    <nav className="fixed w-screen z-30 bg-babyDeesBG py-4 px-4" aria-label="Breadcrumb">
+    <nav className="fixed top-16 h-12 w-screen z-30 bg-babyDeesBG px-4 flex align-center" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-1 sm:space-x-4">
         
         <li>
