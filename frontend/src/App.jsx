@@ -52,7 +52,7 @@ const router = createBrowserRouter(
             element={<ProductIndex />} 
             loader={productIndexLoader} 
             />
-          <Route path='categories/:category' element={<ProductCategory />} />
+          <Route path=':category' element={<ProductCategory />} />
           <Route path='categories/:category/:prodNum' element={<ProductDetail />} />
         </Route>
 

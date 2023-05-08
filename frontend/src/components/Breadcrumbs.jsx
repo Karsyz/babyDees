@@ -15,7 +15,7 @@ export default function Breadcrumbs() {
         
         <li>
           <div>
-            <a href="#" className="text-gray-600 hover:text-babyDeesBG-red">
+            <a href="/products/categories" className="text-gray-600 hover:text-babyDeesBG-red">
               <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
               <span className="sr-only">Home</span>
             </a>

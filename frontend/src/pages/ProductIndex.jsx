@@ -30,9 +30,10 @@ export default function ProductIndex() {
             </div>
             <div className="flex flex-1 flex-col space-y-2 p-4 bg-white">
               <h3 className="text-sm font-medium text-gray-900">
+                
                 <Link to={category.categoryCamelCase}>
                   <span aria-hidden="true" className="absolute inset-0" />
-                  {category.name}
+                  {category.categoryStdCase}
                 </Link>
               </h3>
               <p className="text-sm text-gray-500">{category.description}</p>
