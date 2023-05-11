@@ -13,12 +13,13 @@ router.route('/')
   .get(getAllProducts)
   .post(protect, createProduct)
 
-router.route('/:id')
+router.route('/:category')
+  .get(getAllProductsInCategory)
+  
+router.route('/categories/:category/:prodNum')
   .get(getProduct)
   .put(protect, updateProduct)
   .delete(protect, deleteProduct)
 
-router.route('/category/:category')
-  .get(getAllProductsInCategory)
 
 module.exports = router

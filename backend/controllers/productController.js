@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler')
 
 const Product = require('../models/productModel')
+const Category = require('../models/productCategoriesModel')
 const User = require('../models/userModel')
 
 
@@ -16,7 +17,7 @@ const getAllProducts = asyncHandler(async (req, res) => {
 //  @route  GET /api/products/:id
 //  @access Public
 const getProduct = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id)
+  const product = await Product.find( { category: req.params.category, productNumber: req.params.prodNum} )
   if(!product) {
     res.status(400)
     throw new Error('Product not found')
@@ -30,11 +31,26 @@ const getProduct = asyncHandler(async (req, res) => {
 //  @access Public
 const getAllProductsInCategory = asyncHandler(async (req, res) => {
   const product = await Product.find( { category: req.params.category } )
+  const category = await Category.find({ categoryCamelCase: req.params.category } )
   if(!product) {
     res.status(400)
     throw new Error('No products in category')
   }
-  res.status(200).json(product)
+
+  const cards = { category: category[0].categoryStdCase, products:[] }
+
+  product.forEach(prod => {
+    cards.products.push(
+      {
+        id: prod._id,
+        name: prod.name,
+        price: prod.price,
+        description: prod.description,
+        image: prod.image ? prod.image[0] : "",
+      }
+  )})
+
+  res.status(200).json(cards)
 })
 
 //  @desc   Create a product

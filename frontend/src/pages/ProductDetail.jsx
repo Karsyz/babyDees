@@ -4,11 +4,19 @@ import { RadioGroup } from '@headlessui/react'
 import { CurrencyDollarIcon, GlobeAmericasIcon } from '@heroicons/react/24/outline'
 import { Outlet, useLoaderData, useParams } from 'react-router-dom'
 
+export const productDetailLoader = async () => {
+  const res = await fetch('http://localhost:5000/api/products/:category/:prodNum')
+  const json = res.json()
+  console.log(json)
+  return json
+}
+
+
 export default function ProductDetail() {
+  const product = useLoaderData()
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
   const [selectedSize, setSelectedSize] = useState(product.sizes[2])
 
-  const { prodNum } = useParams()
 
   return (
     <div className="bg-babyDeesBG absolute w-full">
@@ -18,8 +26,8 @@ export default function ProductDetail() {
           <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
             <div className="lg:col-span-5 lg:col-start-8">
               <div className="flex justify-between">
-                <h1 className="text-xl font-medium text-gray-900">{ prodNum }</h1>
-                <p className="text-xl font-medium text-gray-900">{product.price}</p>
+                <h1 className="text-xl font-medium text-gray-900">{product.name}</h1>
+                <p className="text-xl font-medium text-gray-900">{product.price / 100}</p>
               </div>
               {/* Reviews */}
               {/* <div className="mt-4">

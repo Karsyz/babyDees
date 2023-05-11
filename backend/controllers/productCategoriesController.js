@@ -1,12 +1,10 @@
 const asyncHandler = require('express-async-handler')
 const Categories = require('../models/productCategoriesModel')
 
-
-
 //  @desc   Get all products categories
 //  @route  GET /api/products/categories
 //  @access Public
-const getAllProductCategories = asyncHandler(async (req, res) => {
+const getAllCategories = asyncHandler(async (req, res) => {
   const categories = await Categories.find()
   res.status(200).json(categories)
 })
@@ -24,6 +22,17 @@ const createCategory = asyncHandler(async (req, res) => {
     throw new Error('Please add all fields')
   }
 
+  // Create new product category
+  const categories = await Categories.create({
+    categoryStdCase: categoryStdCase,
+    categoryCamelCase: toCamelCase(categoryStdCase),
+    imageSrc: imageSrc,
+    imageAlt: imageAlt,
+    description: description
+  })
+  res.status(200).json(categories)
+})
+
   // convert Standard Case to camelCase
   const toCamelCase = (words) => {
     const wordsArr = words.toLowerCase().split(' ')
@@ -37,19 +46,8 @@ const createCategory = asyncHandler(async (req, res) => {
     return wordsArr.join('')
   }
 
-
-  // Create new product category
-  const categories = await Categories.create({
-    categoryStdCase: categoryStdCase,
-    categoryCamelCase: toCamelCase(categoryStdCase),
-    imageSrc: imageSrc,
-    imageAlt: imageAlt,
-    description: description
-  })
-  res.status(200).json(categories)
-})
-
 module.exports = {
-  getAllProductCategories,
+  getAllCategories,
   createCategory,
+  toCamelCase,
 }

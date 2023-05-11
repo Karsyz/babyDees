@@ -18,8 +18,8 @@ import PaymentFailure from './pages/paymentFailure'
 import NotFound from './pages/NotFound'
 
 
-import ProductCategory from './pages/ProductCategory'
-import ProductDetail from './pages/ProductDetail'
+import ProductCategory, { productCategoryLoader } from './pages/ProductCategory'
+import ProductDetail, { productDetailLoader } from './pages/ProductDetail'
 
 import ProductIndex, { productIndexLoader } from './pages/ProductIndex'
 
@@ -47,13 +47,24 @@ const router = createBrowserRouter(
 
 
         <Route path='products' element={<ProductLayout />} >
-          <Route 
-            path='categories' 
-            element={<ProductIndex />} 
-            loader={productIndexLoader} 
-            />
-          <Route path=':category' element={<ProductCategory />} />
-          <Route path='categories/:category/:prodNum' element={<ProductDetail />} />
+
+          <Route
+            path=''
+            element={<ProductIndex />}
+            loader={productIndexLoader}
+          />
+
+          <Route
+            path=':category'
+            element={<ProductCategory />}
+            loader={productCategoryLoader}
+          />
+
+          <Route
+            path=':category/:prodNum'
+            element={<ProductDetail />}
+            loader={productDetailLoader}
+          />
         </Route>
 
         <Route path='*' element={<NotFound />} />
