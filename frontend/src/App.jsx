@@ -20,13 +20,17 @@ import NotFound from './pages/NotFound'
 
 import ProductCategory, { productCategoryLoader } from './pages/ProductCategory'
 import ProductDetail, { productDetailLoader } from './pages/ProductDetail'
-
 import ProductIndex, { productIndexLoader } from './pages/ProductIndex'
+import { imageIndexLoader } from './components/GetImages'
+import { imageUploadAction } from './components/ImageUpload'
 
 
 // Layouts
 import RootLayout from './Layouts/RootLayout'
 import ProductLayout from './Layouts/ProductLayout'
+import Images from './pages/Images'
+
+
 
 //Components
 
@@ -45,6 +49,13 @@ const router = createBrowserRouter(
         <Route path='paymentSuccess' element={<PaymentSuccess />} />
         <Route path='paymentFailure' element={<PaymentFailure />} />
 
+        <Route
+          path='images'
+          element={<Images />}
+          loader={imageIndexLoader}
+          action={imageUploadAction}
+
+        />
 
         <Route path='products' element={<ProductLayout />} >
 

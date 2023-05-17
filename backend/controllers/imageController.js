@@ -84,12 +84,10 @@ const deleteImage = asyncHandler(async (req, res) => {
   try {
     // Get existing image object
     const existingImage = await Image.findOne( { _id: req.params.id } )
-    
     if(!existingImage) {
       res.status(400)
       throw new Error('Image not found')
     }
-    console.log(existingImage.cloudinaryId)
 
     // Delete existing image from cloudinary
     await cloudinary.uploader.destroy(existingImage.cloudinaryId);
